@@ -49,15 +49,17 @@ public class GuestController {
 	}
 
 	@DeleteMapping("/get/{id}")
-	public void deleteById(Integer guestid) {
-		gr.deleteById(guestid);
+	public void deleteById(@PathVariable("id") Integer guest_id) {
+		gr.deleteById(guest_id);
 	}
+
 	@PutMapping("/get/{id}")
 	public Guest updateById(@PathVariable("id") Integer guest_id, @RequestBody Guest g) {
 		return gr.save(g);
 	}
+
 	@GetMapping("/get/pageNo")
-	public List<Guest> page(Pageable pa){
+	public List<Guest> page(Pageable pa) {
 		Page<Guest> p = gr.findAll(pa);
 		return p.getContent();
 	}
